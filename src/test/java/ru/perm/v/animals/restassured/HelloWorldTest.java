@@ -7,8 +7,10 @@ import org.apache.http.HttpStatus;
 import static io.restassured.RestAssured.given;
 
 @DisplayName("HelloWorldTest")
-public class HelloWorldTest {
+class HelloWorldTest {
+
     private static String HELLO_WORLD_PATH = VARS.HOST + "/hello-world";
+
     @Test
     void helloWorldStatus() {
         given().when().get(HELLO_WORLD_PATH).then().statusCode(HttpStatus.SC_OK);

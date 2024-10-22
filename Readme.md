@@ -71,15 +71,11 @@ https://allure-framework.github.io/allure-demo/5/#suites/a2891ce60e520f56ae25e6c
 ~/prog/java/allure-examples/allure-junit5
 
 ````shell
-$ cd ~/prog/java/allure-examples/allure-junit5
 $ mvn clean test
 $ allure serve allure-results/
 ````
 
-~/prog/java/allure-examples/allure-junit5-example
-
 ````shell
-$ cd ~/prog/java/allure-examples/allure-junit5-example
 $ mvn clean test
 $ ~/prog/java/allure-examples/allure-junit5-example$ allure serve allure-results/
 ````
