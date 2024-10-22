@@ -15,4 +15,5 @@ class GetAllOrdersTest {
     void getAllOrdersStatus() {
         given().when().get(GET_ORDERS_PATH).then().statusCode(HttpStatus.SC_OK);
     }
+
 }
