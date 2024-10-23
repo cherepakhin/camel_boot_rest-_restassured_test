@@ -21,6 +21,8 @@ $ ./mvnw test
 $ allure serve target/surefire-reports/
 ```
 
+![allure_results.png](doc/allure_results.png)
+
 ### Памятка по группировке тестов allure
 
 [https://v.perm.ru/index.php/component/content/article/hierarchy-test?catid=16&Itemid=101](https://v.perm.ru/index.php/component/content/article/hierarchy-test?catid=16&Itemid=101)
