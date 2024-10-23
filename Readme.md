@@ -9,25 +9,17 @@
 Перед запуском тестов нужно запустить сам проект:
 [https://github.com/cherepakhin/animals](https://github.com/cherepakhin/animals)
 
+Проведение теста:
+
 ```shell
-# Проведение теста
-animals-restassured-test$ mvn clean test
-# Просмотр отчета в браузере
-animals-restassured-test$ ./`allure serve target/surefire-reports/`
+$  ./mvnw test
 ```
 
-### Скользкие вопросы
+Просмотр отчета в браузере:
 
-Где хранить классы DTO? В тестируемом проекте и в тестах они должны совпадать и т.к. JSON должны совпадать с ТЗ. 
-Получается, что в тестах нужно вести свою модель DTO. 
-Разработчик пишет свою модель DTO, а тестировщик ведет свою модель DTO. 
-
-### TODO
-
-1. Вкладка "Categories" пустая
-2. Parametrized test
-3. Упорядочить в дерево "Behaviors", "Categories"
-4. Нет "Timeline"
+```shell
+$ allure serve target/surefire-reports/
+```
 
 
 ### Памятка по группировке тестов allure
@@ -67,16 +59,4 @@ public class AnimalsTest {
 
 https://docs.qameta.io/allure/
 https://allure-framework.github.io/allure-demo/5/#suites/a2891ce60e520f56ae25e6caf68ea773/448aea45096280d4/
-
-~/prog/java/allure-examples/allure-junit5
-
-````shell
-$ mvn clean test
-$ allure serve allure-results/
-````
-
-````shell
-$ mvn clean test
-$ ~/prog/java/allure-examples/allure-junit5-example$ allure serve allure-results/
-````
 
