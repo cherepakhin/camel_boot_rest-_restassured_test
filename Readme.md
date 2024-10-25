@@ -25,6 +25,7 @@ $ allure serve target/surefire-reports/
 
 ![allure_results.png](https://github.com/cherepakhin/camel_boot_rest_restassured_test/blob/main/doc/allure_results.png)
 
+![allure_tests.png](https://github.com/cherepakhin/camel_boot_rest_restassured_test/blob/main/doc/allure_tests.png)
 
 ### Закладки
 
