@@ -1,4 +1,4 @@
-package ru.perm.v.animals.restassured;
+package ru.perm.v.spring.camel.restassured;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

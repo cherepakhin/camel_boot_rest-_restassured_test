@@ -1,4 +1,4 @@
-package ru.perm.v.animals.restassured;
+package ru.perm.v.spring.camel.restassured;
 
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.DisplayName;
@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("GetOrderTest")
 class GetOrderTest {
-    private static String GET_ORDER_PATH = VARS.HOST + "/getOrder";
+    private static final String GET_ORDER_PATH = VARS.HOST + "/getOrder";
 
     @Test
     void getOrderByIdStatusOk() {

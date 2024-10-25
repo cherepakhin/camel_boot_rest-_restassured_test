@@ -1,5 +1,7 @@
 ### Behave тестирование RestAssured
 
+Behave тестирование проекта [https://github.com/cherepakhin/camel_boot_rest](https://github.com/cherepakhin/camel_boot_rest).
+
 Для проведения тестов использован RestAssured<br/>
  [https://github.com/rest-assured/rest-assured](https://github.com/rest-assured/rest-assured/wiki/GettingStarted).
 

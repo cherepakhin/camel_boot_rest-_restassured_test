@@ -1,4 +1,4 @@
-package ru.perm.v.animals.restassured;
+package ru.perm.v.spring.camel.restassured;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
