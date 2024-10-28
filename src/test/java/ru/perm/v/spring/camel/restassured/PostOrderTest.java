@@ -2,6 +2,7 @@ package ru.perm.v.spring.camel.restassured;
 
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,6 +12,11 @@ import static org.hamcrest.Matchers.equalTo;
 @DisplayName("PostOrderTest")
 public class PostOrderTest {
     private static final String ADD_ORDER_PATH = VARS.HOST + "/addOrder";
+
+    @BeforeEach
+    void resetDB() {
+        given().when().get(VARS.HOST + "/reset_db");
+    }
 
     @Test
     void postOk() {

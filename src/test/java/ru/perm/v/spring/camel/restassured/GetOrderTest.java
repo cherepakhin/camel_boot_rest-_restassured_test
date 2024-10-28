@@ -1,6 +1,7 @@
 package ru.perm.v.spring.camel.restassured;
 
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("GetOrderTest")
 class GetOrderTest {
     private static final String GET_ORDER_PATH = VARS.HOST + "/getOrder";
+
+    @BeforeEach
+    void resetDB() {
+        given().when().get(VARS.HOST + "/reset_db");
+    }
 
     @Test
     void getOrderByIdStatusOk() {
