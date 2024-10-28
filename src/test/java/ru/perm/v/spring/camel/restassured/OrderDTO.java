@@ -10,9 +10,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class OrderDTO {
-	
-	private int id;
-	private String name;
-	private double price;
+
+    private int id;
+    private String name;
+    private double price;
 
 }

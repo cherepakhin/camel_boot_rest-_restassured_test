@@ -27,6 +27,10 @@ $ allure serve target/surefire-reports/
 
 ![allure_tests.png](https://github.com/cherepakhin/camel_boot_rest_restassured_test/blob/main/doc/allure_tests.png)
 
+### Повторяемость
+
+Важным условием тестирования является ПОСТОРЯЕМОСТЬ. В случае UNIT тестов это несложно. В случае интеграционных могут быть проблемы. Mock нет( Нужно обеспечить какое-то начальное состояние. В данном случае, в удаленной системе сделал служебный URL /reset_db.
+
 ### Закладки
 
 [https://docs.qameta.io/allure/](https://docs.qameta.io/allure/)
