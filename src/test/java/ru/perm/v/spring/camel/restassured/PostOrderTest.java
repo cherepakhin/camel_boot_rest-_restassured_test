@@ -1,5 +1,7 @@
 package ru.perm.v.spring.camel.restassured;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("PostOrderTest")
 class PostOrderTest {
@@ -19,7 +22,7 @@ class PostOrderTest {
     }
 
     @Test
-    void postOk() {
+    void postOkWithCheckRestAssuredBody() {
         OrderDTO orderDto = new OrderDTO(100, "ORDER_100", 6700);
         ValidatableResponse result = given().log().body().contentType("application/json").body(orderDto)
                 .when().post(ADD_ORDER_PATH).then().log().body()
@@ -28,11 +31,39 @@ class PostOrderTest {
                 .and().body("name", equalTo("ORDER_100"))
                 .and().body("price", equalTo(6700.00F));
 
-//        assertEquals(HttpStatus.SC_OK, result.statusCode(HttpStatus.SC_OK));
-//        String s = result.body().asString();
-//        assertEquals("", s);
-//        assertEquals(new OrderDTO(100, "ORDER_100", 6700), receivedDTO);
+        // SECOND variant checks
+        assertEquals( HttpStatus.SC_OK, result.extract().statusCode());
+        String s = result.extract().body().asString();
+        ObjectMapper mapper = new ObjectMapper();
+        OrderDTO receivedOrderDTO = null;
+        try {
+            receivedOrderDTO = mapper.readValue(s, OrderDTO.class);
+        } catch (JsonProcessingException e) {
+            fail();
+        }
     }
+    @Test
+    void postOkTestTraditional() {
+        OrderDTO orderDto = new OrderDTO(100, "ORDER_100", 6700);
+        ValidatableResponse result = given().log().body().contentType("application/json").body(orderDto)
+                .when().post(ADD_ORDER_PATH).then().log().body();
+
+        // SECOND variant checks
+        assertEquals( HttpStatus.SC_OK, result.extract().statusCode());
+
+        String resultBody = result.extract().body().asString();
+        ObjectMapper mapper = new ObjectMapper();
+        OrderDTO receivedOrderDTO = null;
+        try {
+            receivedOrderDTO = mapper.readValue(resultBody, OrderDTO.class);
+        } catch (JsonProcessingException e) {
+            fail();
+        }
+        assertEquals("{\"id\":100,\"name\":\"ORDER_100\",\"price\":6700.0}", resultBody);
+        assertEquals(new OrderDTO(100, "ORDER_100", 6700), receivedOrderDTO);
+    }
+
+
 
     //TODO: POST verify price < 0
     //TODO: POST verify name is empty
