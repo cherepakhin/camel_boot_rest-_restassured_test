@@ -30,17 +30,6 @@ class PostOrderTest {
                 .and().body("id", equalTo(100))
                 .and().body("name", equalTo("ORDER_100"))
                 .and().body("price", equalTo(6700.00F));
-
-        // SECOND variant checks
-        assertEquals( HttpStatus.SC_OK, result.extract().statusCode());
-        String s = result.extract().body().asString();
-        ObjectMapper mapper = new ObjectMapper();
-        OrderDTO receivedOrderDTO = null;
-        try {
-            receivedOrderDTO = mapper.readValue(s, OrderDTO.class);
-        } catch (JsonProcessingException e) {
-            fail();
-        }
     }
     @Test
     void postOkTestTraditional() {
