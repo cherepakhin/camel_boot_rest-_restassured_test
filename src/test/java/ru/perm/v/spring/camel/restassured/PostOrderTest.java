@@ -10,7 +10,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 
 @DisplayName("PostOrderTest")
-public class PostOrderTest {
+class PostOrderTest {
     private static final String ADD_ORDER_PATH = VARS.HOST + "/addOrder";
 
     @BeforeEach
