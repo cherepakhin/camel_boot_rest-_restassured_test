@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @DisplayName("GetAllOrdersTest")
 class GetAllOrdersTest {
 
-    private static String GET_ORDERS_PATH = VARS.HOST + "/getOrders";
+    private static String GET_ORDERS_PATH = VARS.HOST + "/get_orders";
 
     @BeforeEach
     void resetDB() {
