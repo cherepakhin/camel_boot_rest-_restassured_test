@@ -38,6 +38,30 @@ $ allure serve target/surefire-reports/
     }
 ````
 
+````shell
+$ http POST :9090/addOrder < doc/new_order.json
+
+{
+"id": 70,
+"name": "Shoes",
+"price": 70000.0
+}
+
+````
+
+Ошибочный json:
+
+````shell
+$ http POST :9090/addOrder < doc/bad_new_order.json
+
+{
+"id": 70,
+"name": "Shoes",
+"price": 70000.0
+}
+
+````
+
 
 ### Закладки
 

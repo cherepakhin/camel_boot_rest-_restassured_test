@@ -2,6 +2,7 @@ package ru.perm.v.spring.camel.restassured;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import org.apache.http.HttpStatus;
 import org.junit.jupiter.api.BeforeEach;
@@ -52,6 +53,21 @@ class PostOrderTest {
         assertEquals(new OrderDTO(100, "ORDER_100", 6700), receivedOrderDTO);
     }
 
+    @Test
+    void postWithNotCorrectedPrice() {
+        OrderDTO orderDto = new OrderDTO(100, "ORDER_100", -100);
+//        ValidatableResponse result = given().log().body().contentType("application/json").body(orderDto)
+//                .when().post(ADD_ORDER_PATH).then().log().body();
+
+        Response result = given().log().body().contentType("application/json").body(orderDto)
+                .when().post(ADD_ORDER_PATH);
+        String s = result.getBody().asString();
+        assertTrue(s.contains("Price must be higher than 1"));
+//                .body(equalTo("Price must be higher than 1"));
+// interpolatedMessage='Price must be higher than 1'
+//        assertEquals( HttpStatus.SC_INTERNAL_SERVER_ERROR, result.extract().statusCode());
+//        assertEquals("", result.extract().response().toString());
+    }
 
 
     //TODO: POST verify price < 0
