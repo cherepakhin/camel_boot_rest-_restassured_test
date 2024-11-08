@@ -32,6 +32,7 @@ class PostOrderTest {
                 .and().body("name", equalTo("ORDER_100"))
                 .and().body("price", equalTo(6700.00F));
     }
+
     @Test
     void postOkTestTraditional() {
         OrderDTO orderDto = new OrderDTO(100, "ORDER_100", 6700);
@@ -39,7 +40,7 @@ class PostOrderTest {
                 .when().post(ADD_ORDER_PATH).then().log().body();
 
         // SECOND variant checks
-        assertEquals( HttpStatus.SC_OK, result.extract().statusCode());
+        assertEquals(HttpStatus.SC_OK, result.extract().statusCode());
 
         String resultBody = result.extract().body().asString();
         ObjectMapper mapper = new ObjectMapper();
@@ -56,17 +57,13 @@ class PostOrderTest {
     @Test
     void postWithNotCorrectedPrice() {
         OrderDTO orderDto = new OrderDTO(100, "ORDER_100", -100);
-//        ValidatableResponse result = given().log().body().contentType("application/json").body(orderDto)
-//                .when().post(ADD_ORDER_PATH).then().log().body();
 
         Response result = given().log().body().contentType("application/json").body(orderDto)
                 .when().post(ADD_ORDER_PATH);
         String s = result.getBody().asString();
+
         assertTrue(s.contains("Price must be higher than 1"));
-//                .body(equalTo("Price must be higher than 1"));
-// interpolatedMessage='Price must be higher than 1'
-//        assertEquals( HttpStatus.SC_INTERNAL_SERVER_ERROR, result.extract().statusCode());
-//        assertEquals("", result.extract().response().toString());
+        assertEquals(HttpStatus.SC_INTERNAL_SERVER_ERROR, result.getStatusCode());
     }
 
 
