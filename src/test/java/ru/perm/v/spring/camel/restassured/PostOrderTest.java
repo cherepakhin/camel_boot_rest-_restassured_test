@@ -60,13 +60,33 @@ class PostOrderTest {
 
         Response result = given().log().body().contentType("application/json").body(orderDto)
                 .when().post(ADD_ORDER_PATH);
-        String s = result.getBody().asString();
 
-        assertTrue(s.contains("Price must be higher than 1"));
+        String s = result.getBody().asString();
         assertEquals(HttpStatus.SC_INTERNAL_SERVER_ERROR, result.getStatusCode());
+        assertTrue(s.contains("Price must be higher than 1"));
     }
 
+    @Test
+    void postWithNotCorrectedEmptyName() {
+        OrderDTO orderDto = new OrderDTO(10, "", 100);
 
-    //TODO: POST verify price < 0
-    //TODO: POST verify name is empty
+        Response result = given().log().body().contentType("application/json").body(orderDto)
+                .when().post(ADD_ORDER_PATH);
+
+        String s = result.getBody().asString();
+        assertEquals(HttpStatus.SC_INTERNAL_SERVER_ERROR, result.getStatusCode());
+        assertTrue(s.contains("The name must be longer than 5 characters"));
+    }
+
+    @Test
+    void postWithNotCorrectedShortName() {
+        OrderDTO orderDto = new OrderDTO(10, "ABC", 100);
+
+        Response result = given().log().body().contentType("application/json").body(orderDto)
+                .when().post(ADD_ORDER_PATH);
+
+        String s = result.getBody().asString();
+        assertEquals(HttpStatus.SC_INTERNAL_SERVER_ERROR, result.getStatusCode());
+        assertTrue(s.contains("The name must be longer than 5 characters"));
+    }
 }
